@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="TezGâh: hukuk akademisyenleri ve öğrencileri için ücretsiz akademik çalışma tezgâhı. Makaleyi okuyun, işaretleyin, dipnotlarıyla yazın.">
+<title>TezGâh</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Düzen: dar okuma sütunu, geniş ekran görüntüleri. Başlıklar kitap dizgisi gibi serif, arayüz sans. */
+:root{
+  --bg:#f5f6f3; --surface:#ffffff; --fg:#17211d; --muted:#56635d; --line:#dde2dc;
+  --green:#1d6a56; --green-ink:#134a3c; --bordo:#8c1d2e; --tint:#e6efe9;
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101714; --surface:#17211d; --fg:#e8eee9; --muted:#9db0a6; --line:#2a3832; --green:#5fc2a4; --green-ink:#7fd6ba; --tint:#18302a; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101714; --surface:#17211d; --fg:#e8eee9; --muted:#9db0a6; --line:#2a3832; --green:#5fc2a4; --green-ink:#7fd6ba; --tint:#18302a; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 var(--sans);padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,7vw,4.6rem)}
+h2{font-size:clamp(1.8rem,4.2vw,2.7rem)}
+h3{font-size:1.35rem;line-height:1.25}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--green)}
+.lede{font-size:clamp(1.1rem,2.2vw,1.3rem);color:var(--muted);max-width:40rem}
+
+/* üst çubuk */
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.2em;font-size:.82rem;color:var(--muted)}
+.brand svg{width:30px;height:30px}
+nav{display:flex;align-items:center;gap:22px;font-size:.95rem;font-weight:500}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:10px;border:0;font-size:1rem;font-family:var(--sans);cursor:pointer}
+.btn:hover{background:var(--green-ink)}
+:root[data-theme="dark"] .btn{color:#0c1511}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0c1511}}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--tint)}
+:root[data-theme="dark"] .btn.ghost{color:var(--fg)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.ghost{color:var(--fg)}}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+
+/* kahraman */
+.hero{padding-block:56px 40px;display:grid;gap:28px}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap}
+.shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:0 18px 50px rgba(18,40,32,.14)}
+.shot img{width:100%;height:auto}
+.hero .shot{margin-top:18px}
+.meta{font-size:.9rem;color:var(--muted)}
+
+section{padding-block:72px}
+.band{background:var(--surface);border-block:1px solid var(--line);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+
+/* sorun */
+.problem{display:grid;gap:36px}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.chip{padding:8px 14px;border:1px dashed var(--muted);border-radius:999px;font-size:.95rem;color:var(--muted)}
+.arrow{color:var(--muted)}
+.chip.win{border:1px solid var(--green);background:var(--tint);color:var(--green-ink);font-weight:700}
+.problem p.big{font-family:var(--serif);font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.4;max-width:46rem}
+
+/* özellik blokları */
+.feat{display:grid;gap:26px;padding-block:44px}
+.feat .txt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 48px;align-items:start}
+.feat .txt h3{grid-column:1 / -1;font-size:clamp(1.5rem,3vw,2rem)}
+.feat .txt p{color:var(--fg)}
+.feat ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.feat li{padding-left:22px;position:relative;color:var(--muted)}
+.feat li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--green)}
+.clip{width:100%;height:auto;aspect-ratio:16/9;display:block;background:#dfe6e1}
+@media (max-width:860px){.feat .txt{grid-template-columns:minmax(0,1fr)}}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px;margin-top:32px}
+.card{padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg);display:grid;gap:8px;align-content:start}
+.card p{color:var(--muted);font-size:.97rem}
+
+.video{display:grid;gap:22px;justify-items:start}
+.video video{width:100%;border-radius:14px;border:1px solid var(--line);background:#000}
+
+/* indir */
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:28px}
+.dl .btn{justify-content:center;width:100%}
+.dl .sub{font-size:.85rem;color:var(--muted);margin-top:8px;text-align:center}
+.steps{margin:32px 0 0;padding:0;list-style:none;display:grid;gap:14px;max-width:46rem}
+.steps li{display:grid;grid-template-columns:auto 1fr;gap:14px}
+.steps b{font-family:var(--serif);font-size:1.2rem;color:var(--green)}
+.note{margin-top:24px;padding:16px 18px;border-left:3px solid var(--bordo);background:var(--bg);color:var(--muted);font-size:.95rem;max-width:46rem}
+
+details{border-top:1px solid var(--line);padding-block:18px}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-family:var(--serif);font-size:1.25rem;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--green);font-size:1.4rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);max-width:44rem}
+.faq{max-width:46rem;margin-top:28px}
+
+footer{padding-block:48px 56px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line)}
+footer .m{font-family:var(--serif);font-size:1.15rem;color:var(--fg)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <a class="brand" href="#top" aria-label="TezGâh ana sayfa">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#8c1d2e"/><path d="M8 0h8v18l-4-3-4 3z" fill="#fbf4f0"/><path d="M10 7l2-2 2 2" stroke="#8c1d2e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    TEZGÂH
+  </a>
+  <nav aria-label="Sayfa bağlantıları">
+    <a href="#ozellikler">Özellikler</a>
+    <a href="#film">Film</a>
+    <a href="#sss">Sık sorulanlar</a>
+    <a class="btn" href="#indir">İndir</a>
+  </nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <p class="eyebrow">Hukuk akademisyenleri ve öğrencileri için</p>
+  <h1>Akademik çalışma tezgâhı</h1>
+  <p class="lede">Makaleyi okuyun, işaretleyin, kendi yazınızı dipnotlarıyla yazın. Hepsi tek pencerede ve ücretsiz.</p>
+  <div class="row">
+    <a class="btn" href="#indir">Ücretsiz indir</a>
+    <a class="btn ghost" href="#film">Tanıtım filmini izle</a>
+  </div>
+  <p class="meta">Mac (M çip ve Intel) ve Windows 10/11 için. Hesap ve abonelik yok.</p>
+  <div class="shot"><video class="clip" muted loop playsinline autoplay preload="auto" poster="img/tree.jpg" aria-label="Başlık ağacından bir başlığa tıklanınca belgenin o bölümüne gidilir"><source src="clips/tree.mp4" type="video/mp4"></video></div>
+</div>
+
+<section class="problem" aria-labelledby="sorun">
+  <p class="eyebrow">Sorun</p>
+  <h2 id="sorun">Bir makale için dört programın arasında gidip gelmeyin</h2>
+  <div class="chain" aria-label="Bugünkü akış ve TezGâh">
+    <span class="chip">PDF okuyucu</span><span class="arrow">→</span>
+    <span class="chip">Kaynak yöneticisi</span><span class="arrow">→</span>
+    <span class="chip">Not programı</span><span class="arrow">→</span>
+    <span class="chip">Word</span><span class="arrow">=</span>
+    <span class="chip win">TezGâh</span>
+  </div>
+  <p class="big">Alıntıyı nereden aldığınızı, hangi sayfa olduğunu, dipnotun kaynağını her geçişte yeniden bulmak zorunda kalıyorsunuz. TezGâh okumayı, işaretlemeyi ve yazmayı aynı yerde tutar; atıf bilgisi yolda kaybolmaz.</p>
+</section>
+</div>
+
+<div class="band" id="ozellikler">
+<div class="wrap">
+<section aria-labelledby="f1" style="padding-block:40px 8px">
+  <p class="eyebrow">Neler yapar</p>
+  <h2 id="f1" style="margin-top:10px">Okumaktan yazmaya, bir tezgâhta</h2>
+</section>
+
+<div class="feat">
+  <div class="txt">
+    <h3>Aradığınız bölüme saniyeler içinde gidin</h3>
+    <p>PDF ve Word belgelerindeki başlıkları TezGâh kendisi bulur ve soldaki ağaca dizer. Bir başlığa tıklarsınız, o bölüme gidersiniz. Yanlış bulunan başlığı siz düzeltirsiniz.</p>
+    <ul>
+      <li>Başlık ağacı ve bölüm bölüm okuma</li>
+      <li>Dipnotlar sayfanın kenarında durur, ana metne karışmaz</li>
+      <li>Metin iki yana yaslıdır, yazı boyutu size göre ayarlanır</li>
+    </ul>
+  </div>
+  <div class="shot"><video class="clip" muted loop playsinline preload="metadata" poster="img/tree.jpg" aria-label="Başlık ağacından bir başlığa tıklanınca belgenin o bölümüne gidilir"><source src="clips/tree.mp4" type="video/mp4"></video></div>
+</div>
+
+<div class="feat">
+  <div class="txt">
+    <h3>Kanun ve kitaplarda da yolunuzu bulun</h3>
+    <p>Madde madde yazılmış bir kanunda TezGâh Kitap, Kısım, Bölüm, A., I., 1., a. yapısını çıkarır. Yer imi olmayan bir kitapta İçindekiler sayfasını bulup ağacı oradan kurar.</p>
+    <ul>
+      <li>Hangi maddeyi arıyorsanız ağaçtan bulun</li>
+      <li>İçindekiler sayfası bulunamazsa siz gösterirsiniz</li>
+      <li>Ağaçta başlık adlandırın, silin, düzeyini değiştirin</li>
+    </ul>
+  </div>
+  <div class="shot"><video class="clip" muted loop playsinline preload="metadata" poster="img/kanun.jpg" aria-label="Kanunun madde ağacında gezinme"><source src="clips/kanun.mp4" type="video/mp4"></video></div>
+</div>
+
+<div class="feat">
+  <div class="txt">
+    <h3>Okurken işaretleyin, not alın, özet yazın</h3>
+    <p>Metni seçin; küçük araç çubuğundan vurgulayın, alt çizin ya da not ekleyin. Bölümlere not ve özet yazabilir, yer imi koyabilirsiniz. Hepsi Notlar sekmesinde tek yerde toplanır.</p>
+    <ul>
+      <li>Dört renk, vurgu, alt çizgi, serbest not, metin kutusu</li>
+      <li>Bölüm notu, belge özeti, yer imi</li>
+      <li>İşaretleri PDF, Markdown ya da alıntı listesi olarak dışa aktarın</li>
+    </ul>
+  </div>
+  <div class="shot"><video class="clip" muted loop playsinline preload="metadata" poster="img/isaret.jpg" aria-label="Metni seçip vurgulama, not ekleme ve Notlar sekmesi"><source src="clips/isaret.mp4" type="video/mp4"></video></div>
+</div>
+
+<div class="feat">
+  <div class="txt">
+    <h3>Yazı masasında yazın, dipnotlar kendiliğinden gelsin</h3>
+    <p>Okuduğunuz belgenin yanında bir yazı masası açılır. Seçtiğiniz metni tek tıkla masaya eklersiniz; kaynak ve sayfa numarası dipnota kendisi yazılır, kaynakça hazırlanır.</p>
+    <ul>
+      <li>ISNAD, APA, Chicago, OSCOLA ve Bluebook: stili değiştirin, dipnotlar yeni biçime geçsin</li>
+      <li>Kendi dipnotunuzu kaynak, sayfa ve açıklamayla ekleyin</li>
+      <li>Çıktıyı gerçek Word dipnotlarıyla .docx olarak alın</li>
+    </ul>
+  </div>
+  <div class="shot"><video class="clip" muted loop playsinline preload="metadata" poster="img/masa.jpg" aria-label="Metni masaya ekleme, dipnotun kendiliğinden yazılması ve atıf stilini değiştirme"><source src="clips/masa.mp4" type="video/mp4"></video></div>
+</div>
+
+<div class="feat">
+  <div class="txt">
+    <h3>Tüm kütüphanenizde arayın</h3>
+    <p>Açık belgede ya da bağladığınız klasördeki bütün belgelerde arayın. Yazdığınız kelimenin ekli hâlleri de bulunur: anayasa, anayasası, anayasada.</p>
+    <ul>
+      <li>Tam eşleşmeler üstte, ekli hâller altta</li>
+      <li>Tırnak içine yazarak ifade arayın</li>
+      <li>Ctrl K ile belgeye, başlığa ya da komuta hemen ulaşın</li>
+    </ul>
+  </div>
+  <div class="shot"><video class="clip" muted loop playsinline preload="metadata" poster="img/arama.jpg" aria-label="Arama sonuçlarına tıklayınca metinde o yere gitme"><source src="clips/arama.mp4" type="video/mp4"></video></div>
+</div>
+
+<section aria-labelledby="f2" style="padding-block:24px 72px">
+  <h2 id="f2">Ayrıca</h2>
+  <div class="grid">
+    <div class="card"><h3>Taranmış belgeler</h3><p>Tarama ya da fotoğraf olan PDF'lerin metni OCR ile okunur. Seçtiğiniz alanı da yeniden okutabilirsiniz.</p></div>
+    <div class="card"><h3>Orijinal sayfa</h3><p>Metin görünümüyle yetinmeyin; PDF'in kendi sayfasına geçip orada da işaretleyin.</p></div>
+    <div class="card"><h3>Zotero ile çalışır</h3><p>Zotero kütüphanenizi, vurgularınızı ve notlarınızı içeri aktarabilirsiniz.</p></div>
+    <div class="card"><h3>Klasör bağlama</h3><p>Makalelerinizin olduğu klasörü bağlayın, belgeler klasörlere göre kütüphanede dizilir. Dosyalar yerinde kalır.</p></div>
+    <div class="card"><h3>Yedek ve geri yükleme</h3><p>Notlarınız ve işaretleriniz bilgisayarınızda saklanır; isterseniz kendiliğinden yedek yazılır.</p></div>
+    <div class="card"><h3>Siteler</h3><p>DergiPark, Google Akademik gibi sık kullandığınız sitelere tek tıkla gidin.</p></div>
+  </div>
+</section>
+</div>
+</div>
+
+<div class="wrap">
+<section class="video" id="film" aria-labelledby="fl">
+  <p class="eyebrow">Film</p>
+  <h2 id="fl">Üç dakikada görün</h2>
+  <video controls preload="none" poster="img/poster.jpg" playsinline><source src="tanitim.mp4" type="video/mp4"></video>
+</section>
+
+<section id="indir" aria-labelledby="in">
+  <p class="eyebrow">İndir</p>
+  <h2 id="in" style="margin-top:10px">Bilgisayarınıza uygun dosyayı indirin</h2>
+  <p class="lede" style="margin-top:14px">Düğmeler en son sürümün sayfasını açar. Orada altta "Assets" bölümünden dosyanızı seçin.</p>
+  <div class="dl">
+    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/latest" rel="noopener">Windows 10 / 11</a><p class="sub">windows-kurulum.exe</p></div>
+    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/latest" rel="noopener">Mac, Apple çipli</a><p class="sub">mac-M-cip.dmg (M1, M2, M3, M4…)</p></div>
+    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/latest" rel="noopener">Mac, Intel işlemcili</a><p class="sub">mac-Intel.dmg</p></div>
+  </div>
+  <p class="meta" style="margin-top:14px">Hangi Mac'e sahip olduğunuzu Apple menüsü › "Bu Mac Hakkında" penceresinde görebilirsiniz. macOS 12 Monterey ve üstü gerekir.</p>
+  <ol class="steps">
+    <li><b>1</b><span><strong>Mac:</strong> .dmg dosyasını açın, TezGâh'ı Uygulamalar klasörüne sürükleyin ve oradan açın.</span></li>
+    <li><b>2</b><span><strong>Windows:</strong> .exe dosyasını çalıştırın, kurulum bitince Başlat menüsünden açın.</span></li>
+    <li><b>3</b><span>İlk açılışta "Klasör bağla" ile makalelerinizin olduğu klasörü seçin.</span></li>
+  </ol>
+  <p class="note">İlk açılışta bir güvenlik uyarısı görebilirsiniz, çünkü uygulama henüz imzalı dağıtılmıyor. Mac'te: Sistem Ayarları › Gizlilik ve Güvenlik › "Yine de Aç". Windows'ta: "Ek bilgi" › "Yine de çalıştır".</p>
+</section>
+
+<section id="sss" aria-labelledby="ss">
+  <p class="eyebrow">Sık sorulanlar</p>
+  <h2 id="ss" style="margin-top:10px">Aklınıza takılabilecekler</h2>
+  <div class="faq">
+    <details><summary>TezGâh ücretsiz mi?</summary><p>Evet, ücretsiz. Abonelik ya da hesap gerekmez.</p></details>
+    <details><summary>Belgelerim nerede duruyor?</summary><p>Hepsi kendi bilgisayarınızda. TezGâh dosyalarınızı değiştirmez; notlarınız, işaretleriniz ve taslaklarınız da bilgisayarınızda saklanır.</p></details>
+    <details><summary>Zotero'nun yerine mi geçiyor?</summary><p>Hayır. Zotero kaynakları toplayıp saklamak için iyidir. TezGâh belgenin içinde çalıştığınız yerdir: okur, işaretler, yazarsınız. İsterseniz Zotero kütüphanenizi TezGâh'a aktarabilirsiniz.</p></details>
+    <details><summary>Hangi dosyaları açar?</summary><p>PDF ve Word (.docx) dosyalarını. Makale, kitap, kanun metni ve taranmış belgeler dahil.</p></details>
+    <details><summary>Hangi atıf stillerini destekler?</summary><p>ISNAD, APA, Chicago, OSCOLA ve Bluebook. Stili değiştirdiğinizde yazı masasındaki dipnotlar yeni biçime geçer.</p></details>
+    <details><summary>Taranmış PDF'leri okuyabilir mi?</summary><p>Evet, metin OCR ile okunur. Bilgisayarınızın kendi metin tanıma özelliği kullanıldığı için sonuç Mac ve Windows'ta farklı olabilir. Yanlış okunan yeri seçip yeniden okutabilirsiniz.</p></details>
+    <details><summary>Neden güvenlik uyarısı çıkıyor?</summary><p>Uygulama henüz Apple ve Microsoft tarafından imzalı değil. Uyarıyı yukarıdaki adımlarla geçebilirsiniz.</p></details>
+    <details><summary>Yeni sürümü nasıl alırım?</summary><p>Aynı sayfadan yeni sürümü indirip eskisinin üzerine kurun. Kütüphaneniz, notlarınız ve işaretleriniz korunur.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div><div class="m">Akademik çalışma tezgâhı</div><div>TezGâh, ücretsizdir.</div></div>
+  <a class="btn" href="#indir">İndir</a>
+</footer>
+</main>
+</div>
+<script>
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('video.clip'));
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){vids.forEach(function(v){v.removeAttribute('autoplay');v.controls=true;});return;}
+  if(!('IntersectionObserver' in window)){vids.forEach(function(v){v.play().catch(function(){});});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    var v=e.target; if(e.isIntersecting){v.play().catch(function(){});}else{v.pause();}
+  });},{threshold:.35});
+  vids.forEach(function(v){io.observe(v);});
+})();
+</script>
+
+
+</body>
+</html>
