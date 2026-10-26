@@ -21,3 +21,7 @@ Mac'inizin hangisi olduğunu Apple menüsü › "Bu Mac Hakkında" penceresinde 
 **Windows:** `.exe` dosyasını çalıştırın. "Windows bilgisayarınızı korudu" uyarısında "Ek bilgi" › "Yine de çalıştır".
 
 Yeni sürümü eskisinin üzerine kurabilirsiniz; kütüphaneniz ve notlarınız korunur.
+
+## Güncellemeler
+
+0.10.0 sürümünden itibaren Windows'ta TezGah yeni sürümleri kendiliğinden indirir ve uygulamayı kapattığınızda kurar. Mac'te yeni sürüm çıkınca uygulama haber verir ve indirme bağlantısını açar. Sürüm sayfasındaki `latest.yml` ve `.blockmap` dosyaları bu güncelleme içindir; indirmenize gerek yok.
