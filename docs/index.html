@@ -248,11 +248,11 @@ footer .m{font-family:var(--serif);font-size:1.15rem;color:var(--fg)}
 <section id="indir" aria-labelledby="in">
   <p class="eyebrow">İndir</p>
   <h2 id="in" style="margin-top:10px">Bilgisayarınıza uygun dosyayı indirin</h2>
-  <p class="lede" style="margin-top:14px">Düğmeler en son sürümün sayfasını açar. Orada altta "Assets" bölümünden dosyanızı seçin.</p>
+  <p class="lede" style="margin-top:14px">Bilgisayarınıza uygun düğmeye tıklayın; kurulum dosyası doğrudan indirilsin.</p>
   <div class="dl">
-    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/latest" rel="noopener">Windows 10 / 11</a><p class="sub">windows-kurulum.exe</p></div>
-    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/latest" rel="noopener">Mac, Apple çipli</a><p class="sub">mac-M-cip.dmg (M1, M2, M3, M4…)</p></div>
-    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/latest" rel="noopener">Mac, Intel işlemcili</a><p class="sub">mac-Intel.dmg</p></div>
+    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/download/v0.10.0/TezGah-0.10.0-windows-kurulum.exe" data-download-suffix="-windows-kurulum.exe" rel="noopener">Windows 10 / 11</a><p class="sub">windows-kurulum.exe</p></div>
+    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/download/v0.10.0/TezGah-0.10.0-mac-M-cip.dmg" data-download-suffix="-mac-M-cip.dmg" rel="noopener">Mac, Apple çipli</a><p class="sub">mac-M-cip.dmg (M1, M2, M3, M4…)</p></div>
+    <div><a class="btn" href="https://github.com/aserato123/tezgah-indir/releases/download/v0.10.0/TezGah-0.10.0-mac-Intel.dmg" data-download-suffix="-mac-Intel.dmg" rel="noopener">Mac, Intel işlemcili</a><p class="sub">mac-Intel.dmg</p></div>
   </div>
   <p class="meta" style="margin-top:14px">Hangi Mac'e sahip olduğunuzu Apple menüsü › "Bu Mac Hakkında" penceresinde görebilirsiniz. macOS 12 Monterey ve üstü gerekir.</p>
   <ol class="steps">
@@ -297,6 +297,30 @@ footer .m{font-family:var(--serif);font-size:1.15rem;color:var(--fg)}
 })();
 </script>
 
+
+<script>
+(function(){
+  // Keep verified direct links usable even when the release API is unavailable.
+  return fetch('https://api.github.com/repos/aserato123/tezgah-indir/releases/latest')
+    .then(function(response){
+      if(!response.ok) throw new Error('Release unavailable');
+      return response.json();
+    })
+    .then(function(release){
+      if(!Array.isArray(release.assets)) return;
+      document.querySelectorAll('a[data-download-suffix]').forEach(function(link){
+        var suffix=link.getAttribute('data-download-suffix');
+        var asset=release.assets.find(function(item){
+          return typeof item.name==='string' && item.name.endsWith(suffix) &&
+            item.state==='uploaded' && typeof item.browser_download_url==='string' &&
+            item.browser_download_url.startsWith('https://github.com/aserato123/tezgah-indir/releases/download/');
+        });
+        if(asset) link.href=asset.browser_download_url;
+      });
+    })
+    .catch(function(){ /* The verified direct links remain available. */ });
+})();
+</script>
 
 </body>
 </html>
