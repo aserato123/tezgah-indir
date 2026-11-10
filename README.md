@@ -4,7 +4,7 @@ Akademik okuma ve yazma tezgâhı. PDF ve Word dosyalarınızdaki başlıkları 
 
 ## İndir
 
-**[Son sürümü indirin](../../releases/latest)**: açılan sayfanın altındaki "Assets" bölümünden bilgisayarınıza uygun dosyayı seçin.
+**[İndirme sitesi](https://aserato123.github.io/tezgah-indir/#indir)** üzerinden bilgisayarınıza uygun kurulum dosyasını seçin. [Son sürüm ve sürüm notları](../../releases/latest) GitHub'da da yer alır.
 
 | Bilgisayar | Dosya |
 |---|---|
@@ -24,4 +24,4 @@ Yeni sürümü eskisinin üzerine kurabilirsiniz; kütüphaneniz ve notlarınız
 
 ## Güncellemeler
 
-0.10.0 sürümünden itibaren Windows'ta TezGah yeni sürümleri kendiliğinden indirir ve uygulamayı kapattığınızda kurar. Mac'te yeni sürüm çıkınca uygulama haber verir ve indirme bağlantısını açar. Sürüm sayfasındaki `latest.yml` ve `.blockmap` dosyaları bu güncelleme içindir; indirmenize gerek yok.
+Windows'ta indirmeyi onayladıktan sonra güncellemeyi hemen yeniden başlatarak veya uygulamayı kapattığınızda kurabilirsiniz. Mac'te uygulama yeni sürümü bildirir ve onayınızla indirme bağlantısını açar. Sürüm sayfasındaki `latest.yml` ve `.blockmap` dosyalarını elle indirmeniz gerekmez.
