@@ -12,7 +12,7 @@ Akademik okuma ve yazma tezgâhı. PDF ve Word dosyalarınızdaki başlıkları 
 | Mac, Intel işlemcili | `TezGah-…-mac-Intel.dmg` |
 | Windows 10 ve 11 | `TezGah-…-windows-kurulum.exe` |
 
-Apple çipli Mac için 16 Kasım 2026 güncellemesi, Hızlı Atıf’ta seçili alıntıyı Word veya Google Dokümanlar belgesine ve atfını dipnota eklemeyi içerir. [Güncel Mac paketini indirin](https://github.com/aserato123/tezgah-indir/releases/download/v0.10.3/TezGah-0.10.3-20261116-mac-M-cip.dmg).
+**0.10.4**, Hızlı Atıf’ta kayıtlı alıntı seçimini ve klavye geçişlerini iyileştirir. Mac’te seçili alıntı Word veya Google Dokümanlar belgesine, atfı da dipnota eklenebilir.
 
 Mac'inizin hangisi olduğunu Apple menüsü › "Bu Mac Hakkında" penceresinde görebilirsiniz.
 
