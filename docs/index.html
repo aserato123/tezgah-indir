@@ -53,8 +53,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .hero{padding-block:56px 40px;display:grid;gap:28px}
 .hero .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .hero-release{display:grid;gap:3px;margin-inline-start:16px;line-height:1.1}
-.hero-release a{color:var(--green);font-size:clamp(1.38rem,2.2vw,1.75rem);font-weight:700;text-decoration:none}
-.hero-release a:hover{text-decoration:underline}
+.hero-release #latest-version{color:var(--green);font-size:clamp(1.38rem,2.2vw,1.75rem);font-weight:700}
 .hero-release time{font:400 1rem/1.15 var(--serif);color:var(--fg)}
 @media (max-width:580px){.hero-release{flex-basis:100%;margin:8px 0 0}}
 .shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:0 18px 50px rgba(18,40,32,.14)}
@@ -139,7 +138,7 @@ footer .m{font-family:var(--serif);font-size:1.15rem;color:var(--fg)}
     <a class="btn" href="#indir">Ücretsiz indir</a>
     <a class="btn ghost" href="#film">Tanıtım filmini izle</a>
     <p class="hero-release">
-      <a id="latest-version" href="https://github.com/aserato123/tezgah-indir/releases/tag/v0.10.3">Son sürüm 0.10.3</a>
+      <span id="latest-version">Son sürüm 0.10.3</span>
       <time id="latest-date" datetime="2026-11-16">16 Kasım 2026</time>
     </p>
   </div>
@@ -334,7 +333,7 @@ footer .m{font-family:var(--serif);font-size:1.15rem;color:var(--fg)}
       var version=typeof release.tag_name==='string' && release.tag_name.match(/^v(\d+\.\d+\.\d+)$/);
       var stamp=Math.max(Date.parse(release.published_at)||0, installers.length ? Date.parse(installers[0].created_at)||0 : 0);
       var date=document.getElementById('latest-date');
-      var anchor=document.getElementById('latest-version');
+      var versionText=document.getElementById('latest-version');
       if (version && stamp && stamp>=Date.parse(date.dateTime)) {
         var published=new Date(stamp);
         var dayKey=new Intl.DateTimeFormat('en-CA',{
@@ -343,8 +342,7 @@ footer .m{font-family:var(--serif);font-size:1.15rem;color:var(--fg)}
         var fields=Object.fromEntries(dayKey.map(function(part){ return [part.type,part.value]; }));
         date.dateTime=[fields.year,fields.month,fields.day].join('-');
         date.textContent=new Intl.DateTimeFormat('tr-TR',{dateStyle:'long',timeZone:'Europe/Istanbul'}).format(published);
-        anchor.textContent='Son sürüm '+version[1];
-        anchor.href='https://github.com/aserato123/tezgah-indir/releases/tag/'+release.tag_name;
+        versionText.textContent='Son sürüm '+version[1];
       }
     })
     .catch(function(){ /* The verified direct links remain available. */ });
