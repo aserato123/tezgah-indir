@@ -12,8 +12,6 @@ Akademik okuma ve yazma tezgâhı. PDF ve Word dosyalarınızdaki başlıkları 
 | Mac, Intel işlemcili | `TezGah-…-mac-Intel.dmg` |
 | Windows 10 ve 11 | `TezGah-…-windows-kurulum.exe` |
 
-**0.10.4**, Hızlı Atıf’ta kayıtlı alıntı seçimini ve klavye geçişlerini iyileştirir. Mac’te seçili alıntı Word veya Google Dokümanlar belgesine, atfı da dipnota eklenebilir.
-
 Mac'inizin hangisi olduğunu Apple menüsü › "Bu Mac Hakkında" penceresinde görebilirsiniz.
 
 ## Kurulum
